@@ -7,7 +7,7 @@ This software is for use of students on the module UG409765 Software
 Construction at the University of the Highlands and Islands as the starting code
 for Assignment 1. (Please don't create public clones containing solutions!)
 
-Instructions for the assignment are on Blackboard.
+Instructions for the assignment are on Brightspace.
 
 Clone this repository to get started. When you are working, remember to commit
 often. Your use of Git is one of the marking criteria. Submitting a single large
@@ -23,4 +23,4 @@ track of it as you work.
 If you have any questions, contact me via the Discussion Board (preferred) or by
 email.
 
-Ian Barnes, 2016-09-17
+Graham Wilson, 2020-02-29
