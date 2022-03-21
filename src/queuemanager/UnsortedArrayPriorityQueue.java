@@ -9,10 +9,10 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     /* Class Variables */
 
     //Data storage
-    private Object[] storage;
+    private final Object[] storage;
 
     //Size of array
-    private int capactiy;
+    private final int capactiy;
 
     //Index location of the last object in queue
     private int tailIndex;
@@ -41,9 +41,25 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    /* Function that returns the highest priority item in the queue */
     @Override
     public T head() throws QueueUnderflowException {
-        return null;
+        if(isEmpty()){
+            throw new QueueUnderflowException();
+        } else{
+
+            int highestPriority = -1;
+            int pos = -1;
+
+            for (int i = 0; i < capactiy+1; i++){
+                if(((PriorityItem) storage[i]).getPriority() > highestPriority){
+                    highestPriority = ((PriorityItem) storage[i]).getPriority();
+                    pos = i;
+                }
+            }
+
+            return ((PriorityItem<T>) storage[pos]).getItem();
+        }
     }
 
     @Override
