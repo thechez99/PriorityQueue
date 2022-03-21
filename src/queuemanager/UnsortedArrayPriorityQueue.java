@@ -31,6 +31,14 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
 
+        tailIndex++;
+        if (tailIndex >= capactiy){
+            tailIndex--;
+            throw new QueueOverflowException();
+        } else{
+            storage[tailIndex] = new PriorityItem<>(item, priority);
+        }
+
     }
 
     @Override
