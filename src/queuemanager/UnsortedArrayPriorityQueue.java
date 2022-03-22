@@ -57,6 +57,9 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         if (isEmpty()){
             throw new QueueUnderflowException();
         } else{
+            int pos = this.getHighestPriority();
+
+
 
         }
     }
