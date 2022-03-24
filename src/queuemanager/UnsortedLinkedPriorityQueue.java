@@ -16,7 +16,9 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
-
+        Node newNode = new Node(item);
+        newNode.setNextNode(this.headNode);
+        this.headNode = newNode;
     }
 
     @Override
@@ -39,30 +41,30 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /* Supporting Class Declarations */
     class Node{
 
-        private PriorityItem<T> nodeData;
-        private int nextNode;
+        private T nodeData;
+        private Node nextNode;
 
         /* Node Constructor */
 
-        public Node(PriorityItem<T> priorityItem){
+        public Node(T priorityItem){
             this.nodeData = priorityItem;
         }
 
         /* Node Getter and Setters */
 
-        public PriorityItem<T> getNodeData() {
+        public T getNodeData() {
             return nodeData;
         }
 
-        public void setNodeData(PriorityItem<T> pI){
-            this.nodeData = pI;
+        public void setNodeData(T priorityItem){
+            this.nodeData = priorityItem;
         }
 
-        public int getNextNode() {
+        public Node getNextNode() {
             return nextNode;
         }
 
-        public void setNextNode(int nextNode){
+        public void setNextNode(Node nextNode){
             this.nextNode = nextNode;
         }
 
