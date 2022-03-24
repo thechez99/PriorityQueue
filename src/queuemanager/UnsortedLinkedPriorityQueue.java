@@ -34,7 +34,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return headNode.getNextNode() == null;
     }
 
     /* Class Function(s) */
