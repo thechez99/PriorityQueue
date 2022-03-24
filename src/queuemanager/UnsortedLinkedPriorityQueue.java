@@ -28,9 +28,8 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public void remove() throws QueueUnderflowException {
-
-
-
+        Node secondNode = headNode.getNextNode();
+        headNode.setNextNode(headNode.getNextNode());
     }
 
     @Override
