@@ -48,7 +48,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
             previous.nextNode = null;
 
-            //headNode.setNextNode(headNode.getNextNode());
+            headNode.setNextNode(headNode.getNextNode());
         }
 
     }
@@ -70,6 +70,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
             while(tempNode.getNextNode() != null){
                 result += tempNode.getNodeData().toString() + "], ";
+                tempNode = tempNode.getNextNode();
             }
         }
 
