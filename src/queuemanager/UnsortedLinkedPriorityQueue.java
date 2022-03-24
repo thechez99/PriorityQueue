@@ -23,13 +23,21 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public T head() throws QueueUnderflowException {
-        return headNode.getNodeData();
+        if(isEmpty())
+            throw new QueueUnderflowException();
+        else
+            return headNode.getNodeData();
     }
 
     @Override
     public void remove() throws QueueUnderflowException {
-        Node secondNode = headNode.getNextNode();
-        headNode.setNextNode(headNode.getNextNode());
+        if(isEmpty())
+            throw new QueueUnderflowException();
+        else{
+            Node secondNode = headNode.getNextNode();
+            headNode.setNextNode(headNode.getNextNode());
+        }
+
     }
 
     @Override
