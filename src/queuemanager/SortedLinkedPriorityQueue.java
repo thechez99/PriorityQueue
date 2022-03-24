@@ -9,7 +9,6 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /* CLass Constructor(s) */
 
     public SortedLinkedPriorityQueue(int size){
-
     }
 
     /* Class Override Function(s) */
