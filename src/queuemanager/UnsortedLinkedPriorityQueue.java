@@ -16,7 +16,10 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
-        Node newNode = new Node(item);
+
+        PriorityItem<T> priorityItem = new PriorityItem<T>(item, priority);
+
+        Node newNode = new Node(priorityItem);
         newNode.setNextNode(this.headNode);
         this.headNode = newNode;
     }
@@ -26,7 +29,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         if(isEmpty())
             throw new QueueUnderflowException();
         else
-            return headNode.getNodeData();
+            return headNode.getNodeData().getItem();
     }
 
     @Override
@@ -34,7 +37,18 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         if(isEmpty())
             throw new QueueUnderflowException();
         else{
-            headNode.setNextNode(headNode.getNextNode());
+            Node previous = null;
+            Node current = headNode;
+            Node temp = current;
+
+            while(current.nextNode != null){
+                previous = current;
+                current = current.nextNode;
+            }
+
+            previous.nextNode = null;
+
+            //headNode.setNextNode(headNode.getNextNode());
         }
 
     }
@@ -67,12 +81,12 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /* Supporting Class Declarations */
     class Node{
 
-        private T nodeData;
+        private PriorityItem<T> nodeData;
         private Node nextNode;
 
         /* Node Constructor */
 
-        public Node(T priorityItem){
+        public Node(PriorityItem<T> priorityItem){
             this.nodeData = priorityItem;
         }
 
@@ -82,11 +96,11 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         /* Node Getter and Setters */
 
-        public T getNodeData() {
+        public PriorityItem<T> getNodeData() {
             return nodeData;
         }
 
-        public void setNodeData(T priorityItem){
+        public void setNodeData(PriorityItem<T> priorityItem){
             this.nodeData = priorityItem;
         }
 
