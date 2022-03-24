@@ -8,7 +8,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     /* CLass Constructor(s) */
 
-    public SortedLinkedPriorityQueue(int size){
+    public SortedLinkedPriorityQueue(){
     }
 
     /* Class Override Function(s) */
@@ -34,13 +34,31 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         return headNode.getNextNode() != null;
     }
 
+    @Override
+    public String toString(){
+
+        String result = "[";
+
+        if(isEmpty()){
+            result += " Queue is empty ]";
+        } else{
+            Node tempNode = headNode;
+
+            while(tempNode.getNextNode() != null){
+                result += tempNode.getNodeData().toString() + "], ";
+            }
+        }
+
+        return result;
+    }
+
     /* Class Functions */
 
     /* Supporting Class Declarations */
     class Node{
 
         private T nodeData;
-        private UnsortedLinkedPriorityQueue.Node nextNode;
+        private Node nextNode;
 
         /* Node Constructor */
 
@@ -58,11 +76,11 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             this.nodeData = priorityItem;
         }
 
-        public UnsortedLinkedPriorityQueue.Node getNextNode() {
+        public Node getNextNode() {
             return nextNode;
         }
 
-        public void setNextNode(UnsortedLinkedPriorityQueue.Node nextNode){
+        public void setNextNode(Node nextNode){
             this.nextNode = nextNode;
         }
 

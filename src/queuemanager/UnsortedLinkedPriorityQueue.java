@@ -9,7 +9,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /* Class Constructor(s) */
 
     public UnsortedLinkedPriorityQueue(){
-
+        this.headNode = new Node();
     }
 
     /* Class Override Function(s) */
@@ -34,7 +34,6 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         if(isEmpty())
             throw new QueueUnderflowException();
         else{
-            Node secondNode = headNode.getNextNode();
             headNode.setNextNode(headNode.getNextNode());
         }
 
@@ -43,6 +42,24 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public boolean isEmpty() {
         return headNode.getNextNode() == null;
+    }
+
+    @Override
+    public String toString(){
+
+        String result = "[";
+
+        if(isEmpty()){
+            result += " Queue is empty ]";
+        } else{
+            Node tempNode = headNode;
+
+            while(tempNode.getNextNode() != null){
+                result += tempNode.getNodeData().toString() + "], ";
+            }
+        }
+
+        return result;
     }
 
     /* Class Function(s) */
@@ -57,6 +74,10 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         public Node(T priorityItem){
             this.nodeData = priorityItem;
+        }
+
+        public Node(){
+            this.setNextNode(null);
         }
 
         /* Node Getter and Setters */
