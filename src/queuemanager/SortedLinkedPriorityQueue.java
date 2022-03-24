@@ -5,10 +5,13 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /* Class Variables */
 
     private Node headNode;
+    private int size;
 
     /* CLass Constructor(s) */
 
     public SortedLinkedPriorityQueue(){
+        this.headNode = null;
+        this.size = 0;
     }
 
     /* Class Override Function(s) */
@@ -16,12 +19,20 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
 
+        PriorityItem<T> priorityItem = new PriorityItem<T>(item, priority);
+
+        if(isEmpty()){
+            headNode = new Node(priorityItem);
+            headNode.setNextNode(null);
+        } else{
+
+        }
 
     }
 
     @Override
     public T head() throws QueueUnderflowException {
-        return getHighestPriorityNode().getNodeData().getItem();
+        return headNode.getNodeData().getItem();
     }
 
     @Override
@@ -31,7 +42,12 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public boolean isEmpty() {
-        return headNode.getNextNode() != null;
+        if(headNode.getNextNode() == null){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     @Override
@@ -78,6 +94,24 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    public void sort(){
+        if (size > 1){
+            for(int i = 0; i < size - 1; i++){
+                Node currentNode = headNode;
+                Node next = headNode.nextNode;
+                for (int j = 0; j < size - 1; j++){
+                    if(currentNode.getNodeData().getPriority() > next.getNodeData().getPriority()){
+                        Node temp = currentNode;
+                        currentNode = next;
+                        next = temp;
+                    }
+                    currentNode = next;
+                    next = next.nextNode;
+                }
+            }
+        }
+    }
+
     /* Supporting Class Declarations */
     class Node{
 
@@ -88,6 +122,10 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         public Node(PriorityItem<T> priorityItem){
             this.nodeData = priorityItem;
+        }
+
+        public Node(){
+            this.setNextNode(null);
         }
 
         /* Node Getter and Setters */
