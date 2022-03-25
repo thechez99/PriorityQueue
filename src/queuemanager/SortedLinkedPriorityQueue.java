@@ -21,15 +21,15 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         PriorityItem<T> priorityItem = new PriorityItem<T>(item, priority);
 
-        Node node = new Node(priorityItem);
+        Node addNode = new Node(priorityItem);
         if(isEmpty()){
-            headNode = node;
+            headNode = addNode;
         } else {
             Node currentNode = headNode;
             while(currentNode.nextNode != null){
                 currentNode = currentNode.nextNode;
             }
-            currentNode.nextNode = node;
+            currentNode.nextNode = addNode;
         }
 
         size++;
@@ -153,5 +153,5 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
 /* CODE REFERENCES
  * Dixit, R. (2017) Introduction to Data Structures & Algorithms in Java [online]. LinkedIn Learning. Available at <https://www.linkedin.com/learning/introduction-to-data-structures-algorithms-in-java/what-is-a-linked-list?autoplay=true&resume=false&u=2102796> [24 March 2022]
- *
+ * Stackoverflow (2015) Bubble Sort Manually a Linked List in Java [online] Stackoverflow. Available at <https://stackoverflow.com/questions/29869094/bubble-sort-manually-a-linked-list-in-java> [25 March 2022]
  */
