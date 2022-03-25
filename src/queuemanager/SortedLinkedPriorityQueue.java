@@ -21,13 +21,19 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         PriorityItem<T> priorityItem = new PriorityItem<T>(item, priority);
 
+        Node node = new Node(priorityItem);
         if(isEmpty()){
-            headNode = new Node(priorityItem);
-            headNode.setNextNode(null);
-        } else{
-
+            headNode = node;
+        } else {
+            Node currentNode = headNode;
+            while(currentNode.nextNode != null){
+                currentNode = currentNode.nextNode;
+            }
+            currentNode.nextNode = node;
         }
 
+        size++;
+        sort();
     }
 
     @Override
@@ -42,12 +48,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public boolean isEmpty() {
-        if(headNode.getNextNode() == null){
-            return false;
-        }else{
-            return true;
-        }
-
+        return size == 0;
     }
 
     @Override
@@ -60,9 +61,9 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         } else{
             Node tempNode = headNode;
 
-            while(tempNode.getNextNode() != null){
+            while(tempNode != null){
                 result += tempNode.getNodeData().toString() + "], ";
-                tempNode = tempNode.getNextNode();
+                tempNode = tempNode.nextNode;
             }
         }
 
@@ -152,4 +153,5 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
 /* CODE REFERENCES
  * Dixit, R. (2017) Introduction to Data Structures & Algorithms in Java [online]. LinkedIn Learning. Available at <https://www.linkedin.com/learning/introduction-to-data-structures-algorithms-in-java/what-is-a-linked-list?autoplay=true&resume=false&u=2102796> [24 March 2022]
+ *
  */
